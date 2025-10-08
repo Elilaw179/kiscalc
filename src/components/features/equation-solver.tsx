@@ -1,6 +1,7 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
 import { solveEquationAction } from '@/app/equation-solver/actions';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -26,7 +27,7 @@ function SubmitButton() {
 }
 
 export function EquationSolver() {
-  const [state, formAction] = useFormState(solveEquationAction, initialState);
+  const [state, formAction] = useActionState(solveEquationAction, initialState);
   const { toast } = useToast();
 
   useEffect(() => {
