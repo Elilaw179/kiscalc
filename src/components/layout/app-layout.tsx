@@ -3,7 +3,7 @@
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarInset, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Calculator, Replace, FunctionSquare, LineChart, BookText, BeakerIcon, PanelLeft } from 'lucide-react';
+import { Calculator, Replace, LineChart, BookText, BeakerIcon, PanelLeft } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '../ui/button';
@@ -11,7 +11,6 @@ import { Button } from '../ui/button';
 const navItems = [
   { href: '/', label: 'Calculator', icon: Calculator },
   { href: '/unit-converter', label: 'Unit Converter', icon: Replace },
-  { href: '/equation-solver', label: 'Equation Solver', icon: FunctionSquare },
   { href: '/graph-plotter', label: 'Graph Plotter', icon: LineChart },
   { href: '/formula-library', label: 'Formula Library', icon: BookText },
 ];
