@@ -10,7 +10,6 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
-import { gemini25Flash } from '@genkit-ai/google-genai';
 
 const SolveAlgebraicEquationsInputSchema = z.object({
   equation: z.string().describe('The algebraic equation to solve.'),
@@ -73,7 +72,7 @@ const solveAlgebraicEquationsFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await ai.generate({
-      model: gemini25Flash,
+      model: 'googleai/gemini-2.5-flash-preview',
       prompt: solveAlgebraicEquationsPrompt.prompt,
       input,
       output: {
