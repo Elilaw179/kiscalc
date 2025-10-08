@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AppLayout } from '@/components/layout/app-layout';
 import { Toaster } from '@/components/ui/toaster';
+import { Footer } from '@/components/layout/footer';
 
 export const metadata: Metadata = {
   title: 'KourklysCalc',
@@ -22,8 +23,13 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500&display=swap" rel="stylesheet" />
       </head>
       <body className="font-body antialiased">
-        <div className="min-h-screen">
-          <AppLayout>{children}</AppLayout>
+        <div className="flex flex-col min-h-screen">
+          <AppLayout>
+            <div className="flex-grow">
+              {children}
+            </div>
+            <Footer />
+          </AppLayout>
         </div>
         <Toaster />
       </body>
