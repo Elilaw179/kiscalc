@@ -3,7 +3,7 @@
     {
       "id": "class-photo",
       "description": "A placeholder image for the class photo.",
-      "imageUrl": "https://picsum.photos/seed/class-photo/1200/600",
+      "imageUrl": "/kis1.jpeg",
       "imageHint": "classroom students"
     }
   ]
