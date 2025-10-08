@@ -21,10 +21,6 @@ const SolveAlgebraicEquationsOutputSchema = z.object({
 });
 export type SolveAlgebraicEquationsOutput = z.infer<typeof SolveAlgebraicEquationsOutputSchema>;
 
-export async function solveAlgebraicEquations(input: SolveAlgebraicEquationsInput): Promise<SolveAlgebraicEquationsOutput> {
-  return solveAlgebraicEquationsFlow(input);
-}
-
 const solveAlgebraicEquationsPrompt = ai.definePrompt({
   name: 'solveAlgebraicEquationsPrompt',
   input: {schema: SolveAlgebraicEquationsInputSchema},
@@ -64,14 +60,10 @@ const solveAlgebraicEquationsPrompt = ai.definePrompt({
   `,
 });
 
-const solveAlgebraicEquationsFlow = ai.defineFlow(
-  {
-    name: 'solveAlgebraicEquationsFlow',
-    inputSchema: SolveAlgebraicEquationsInputSchema,
-    outputSchema: SolveAlgebraicEquationsOutputSchema,
-  },
-  async input => {
-    const {output} = await solveAlgebraicEquationsPrompt(input);
-    return output!;
+export async function solveAlgebraicEquations(input: SolveAlgebraicEquationsInput): Promise<SolveAlgebraicEquationsOutput> {
+  const {output} = await solveAlgebraicEquationsPrompt(input);
+  if (!output) {
+    throw new Error('The AI model did not return a solution.');
   }
-);
+  return output;
+}

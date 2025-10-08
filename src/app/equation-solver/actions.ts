@@ -17,6 +17,13 @@ export async function solveEquationAction(
   prevState: FormState,
   formData: FormData
 ): Promise<FormState> {
+  if (!process.env.GEMINI_API_KEY) {
+    return {
+      message: 'The Gemini API key is not configured. Please set the GEMINI_API_KEY environment variable.',
+      isError: true,
+    };
+  }
+
   const validatedFields = schema.safeParse({
     equation: formData.get('equation'),
   });
@@ -37,8 +44,9 @@ export async function solveEquationAction(
     };
   } catch (error) {
     console.error(error);
+    const errorMessage = error instanceof Error ? error.message : "An unknown error occurred.";
     return {
-      message: 'An error occurred while solving the equation. The AI model may be unavailable or the input is invalid.',
+      message: `An error occurred while solving the equation. The AI model may be unavailable or the input is invalid. (Details: ${errorMessage})`,
       isError: true,
     };
   }
