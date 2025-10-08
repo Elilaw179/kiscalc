@@ -123,7 +123,7 @@ function formatOperand(operand: string | null) {
 const CalcButton = ({ dispatch, action, payload, children, className }: any) => (
   <Button
     variant="secondary"
-    className={`h-16 text-2xl rounded-xl shadow-md transition-transform duration-100 active:scale-95 ${className}`}
+    className={`h-14 sm:h-16 text-xl sm:text-2xl rounded-xl shadow-md transition-transform duration-100 active:scale-95 ${className}`}
     onClick={() => dispatch({ type: action, payload })}
   >
     {children}
@@ -135,16 +135,16 @@ export function Calculator() {
 
   return (
     <div className="flex justify-center items-center h-full">
-      <div className="w-full max-w-md bg-card p-4 rounded-2xl shadow-2xl border">
-        <div className="bg-background/50 rounded-lg p-4 text-right mb-4 min-h-[100px] flex flex-col justify-end break-all">
-          <div className="text-muted-foreground text-2xl">
+      <div className="w-full max-w-md bg-card p-2 sm:p-4 rounded-2xl shadow-2xl border">
+        <div className="bg-background/50 rounded-lg p-4 text-right mb-4 min-h-[90px] sm:min-h-[100px] flex flex-col justify-end break-all">
+          <div className="text-muted-foreground text-xl sm:text-2xl">
             {formatOperand(previousOperand)} {operation}
           </div>
-          <div className="text-foreground text-5xl font-bold">
+          <div className="text-foreground text-4xl sm:text-5xl font-bold">
             {formatOperand(currentOperand)}
           </div>
         </div>
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-5 gap-1 sm:gap-2">
           {/* Advanced Functions */}
           <CalcButton dispatch={dispatch} action={ACTIONS.SPECIAL} payload={{ func: 'sin' }} className="bg-primary/50 hover:bg-primary/70">sin</CalcButton>
           <CalcButton dispatch={dispatch} action={ACTIONS.CHOOSE_OPERATION} payload={{ operation: '^' }} className="bg-accent text-accent-foreground hover:bg-accent/90 text-xl">xʸ</CalcButton>
