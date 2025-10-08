@@ -71,14 +71,7 @@ const solveAlgebraicEquationsFlow = ai.defineFlow(
     outputSchema: SolveAlgebraicEquationsOutputSchema,
   },
   async input => {
-    const {output} = await ai.generate({
-      model: 'googleai/gemini-2.5-flash-preview',
-      prompt: solveAlgebraicEquationsPrompt.prompt,
-      input,
-      output: {
-        schema: SolveAlgebraicEquationsOutputSchema,
-      }
-    });
+    const {output} = await solveAlgebraicEquationsPrompt(input);
     return output!;
   }
 );
