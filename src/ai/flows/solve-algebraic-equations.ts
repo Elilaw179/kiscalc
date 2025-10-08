@@ -24,7 +24,7 @@ export type SolveAlgebraicEquationsOutput = z.infer<typeof SolveAlgebraicEquatio
 
 const solveAlgebraicEquationsPrompt = ai.definePrompt({
   name: 'solveAlgebraicEquationsPrompt',
-  model: googleAI.model('gemini-2.5-flash-preview'),
+  model: googleAI.model('gemini-1.5-flash-latest'),
   input: {schema: SolveAlgebraicEquationsInputSchema},
   output: {schema: SolveAlgebraicEquationsOutputSchema},
   prompt: `You are an expert mathematician skilled at solving algebraic equations step by step.
