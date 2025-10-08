@@ -61,7 +61,7 @@ export const formulas: Formula[] = [
     name: "Newton's Second Law",
     category: 'Physics',
     formula: 'F = ma',
-    description: 'Force equals mass times acceleration.',
+    description: 'Force equals mass times acceleration. A fundamental principle of motion.',
   },
   {
     id: 'einstein-mass-energy',
@@ -76,6 +76,13 @@ export const formulas: Formula[] = [
     category: 'Geometry',
     formula: 'd = sqrt((x₂ - x₁)² + (y₂ - y₁)²)',
     description: 'Calculates the distance between two points in a plane.',
+  },
+  {
+    id: 'velocity-formula',
+    name: 'Velocity',
+    category: 'Physics',
+    formula: 'v = d / t',
+    description: 'Calculates velocity as distance over time. Key to understanding motion.',
   },
   {
     id: 'sine-identity',
