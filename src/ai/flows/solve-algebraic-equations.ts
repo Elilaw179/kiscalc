@@ -10,6 +10,7 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { googleAI } from '@genkit-ai/google-genai';
 
 const SolveAlgebraicEquationsInputSchema = z.object({
   equation: z.string().describe('The algebraic equation to solve.'),
@@ -23,6 +24,7 @@ export type SolveAlgebraicEquationsOutput = z.infer<typeof SolveAlgebraicEquatio
 
 const solveAlgebraicEquationsPrompt = ai.definePrompt({
   name: 'solveAlgebraicEquationsPrompt',
+  model: googleAI.model('gemini-2.5-flash-preview'),
   input: {schema: SolveAlgebraicEquationsInputSchema},
   output: {schema: SolveAlgebraicEquationsOutputSchema},
   prompt: `You are an expert mathematician skilled at solving algebraic equations step by step.
