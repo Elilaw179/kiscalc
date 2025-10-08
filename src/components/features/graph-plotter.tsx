@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -8,23 +8,27 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { useToast } from '@/hooks/use-toast';
 
+type ChartData = { x: string; y: number }[];
+
 export function GraphPlotter() {
   const [funcStr, setFuncStr] = useState('x^2');
   const [xMin, setXMin] = useState('-10');
   const [xMax, setXMax] = useState('10');
   const [step, setStep] = useState('0.5');
+  const [chartData, setChartData] = useState<ChartData>([]);
   const { toast } = useToast();
 
-  const chartData = useMemo(() => {
+  useEffect(() => {
     const min = parseFloat(xMin);
     const max = parseFloat(xMax);
     const s = parseFloat(step);
 
     if (isNaN(min) || isNaN(max) || isNaN(s) || s <= 0 || min >= max) {
-      return [];
+      setChartData([]);
+      return;
     }
 
-    const data = [];
+    const data: ChartData = [];
     const sanitizedFunc = funcStr.replace(/\^/g, '**');
 
     try {
@@ -36,14 +40,14 @@ export function GraphPlotter() {
           data.push({ x: x.toFixed(2), y });
         }
       }
-      return data;
+      setChartData(data);
     } catch (error) {
+      setChartData([]);
       toast({
         variant: 'destructive',
         title: 'Invalid Function',
         description: 'Please check your function syntax.',
       });
-      return [];
     }
   }, [funcStr, xMin, xMax, step, toast]);
 
