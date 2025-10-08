@@ -3,7 +3,7 @@
 import { SidebarProvider, Sidebar, SidebarTrigger, SidebarInset, SidebarHeader, SidebarContent, SidebarMenu, SidebarMenuItem, SidebarMenuButton } from '@/components/ui/sidebar';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
-import { Calculator, Replace, FunctionSquare, LineChart, BookText, BeakerIcon } from 'lucide-react';
+import { Calculator, Replace, FunctionSquare, LineChart, BookText, BeakerIcon, PanelLeft } from 'lucide-react';
 import type { ReactNode } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { Button } from '../ui/button';
@@ -36,7 +36,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href} passHref legacyBehavior>
+                <Link href={item.href} passHref>
                   <SidebarMenuButton
                     isActive={pathname === item.href}
                     tooltip={{ children: item.label, side: 'right', align: 'center', className: isMobile ? 'hidden': '' }}
@@ -52,9 +52,9 @@ export function AppLayout({ children }: { children: ReactNode }) {
       </Sidebar>
       <SidebarInset>
         <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:hidden">
-          <SidebarTrigger>
+          <SidebarTrigger asChild>
             <Button variant="ghost" size="icon" className="h-8 w-8">
-              <Calculator/>
+              <PanelLeft />
             </Button>
           </SidebarTrigger>
           <h1 className="text-lg font-semibold">KourklysCalc</h1>
