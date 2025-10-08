@@ -36,7 +36,7 @@ export function AppLayout({ children }: { children: ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href} passHref>
+                <Link href={item.href}>
                   <SidebarMenuButton
                     isActive={pathname === item.href}
                     tooltip={{ children: item.label, side: 'right', align: 'center', className: isMobile ? 'hidden': '' }}
@@ -52,10 +52,8 @@ export function AppLayout({ children }: { children: ReactNode }) {
       </Sidebar>
       <SidebarInset>
         <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm md:hidden">
-          <SidebarTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-8 w-8">
-              <PanelLeft />
-            </Button>
+          <SidebarTrigger variant="ghost" size="icon" className="h-8 w-8">
+            <PanelLeft />
           </SidebarTrigger>
           <h1 className="text-lg font-semibold">KourklysCalc</h1>
         </header>
